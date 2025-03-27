@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewData["Title"] = "first page";
+}
+
+<h1>First page </h1>
+
+
+
+<h4>path</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="path">
+           
+            <div class="form-group">
+                <label  class="control-label">Choose your path</label>
+
+                <select name="path" class="form-control" id="list" >
+
+                    <option id="blank" value="blank" selected disabled>paths</option>
+                    <option value="IT">IT</option>
+                    <option value="engineering">engineering</option>
+                    <option value="medic">medic</option>
+
+                </select> 
+                <span  class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">GPA</label>
+                <input  class="form-control" />
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="submit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Home" asp-action="Index">Back to List</a>
+</div>
+
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+
