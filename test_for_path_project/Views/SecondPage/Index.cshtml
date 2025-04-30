@@ -1,50 +1,249 @@
-﻿@model IEnumerable<test_for_path_project.Models.University>
-
+﻿@model test_for_path_project.Models.CombinedViewModel
 @{
     ViewBag.Title = ViewBag.Title ?? "Default Title";
 }
 
-<h1>@ViewBag.Title</h1>
 
 
 
-@foreach(var itme in Model)
-{
-    <h2>@Html.DisplayFor(modelItem => itme.Name)</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.GPA)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
+@{
+    // combiend all the models in a list to be able to iterate over the models and there items
+    // made the list of type "IEnumerable" to be able to just add the model 
+    // if we didn't make the list of type "IEnumerable" and just made of the interface type 
+    // this will fours us to add all the items of the models to the list and this is a problem we 
+    // do not need 
+    var Uni_Names = new List<IEnumerable<ModelsInterace>>();
+    Uni_Names.Add(Model.AAU);
+    Uni_Names.Add(Model.PHU);
+    Uni_Names.Add(Model.MEU);
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.GPA)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    </td>
-                </tr>
-            }
-
-
-
-        </tbody>
-    </table>
+    //defined a variable to use later to choose what table to display  
+    int i = 0;
 }
+@{
+    // this foreach loops through the uieslist that contains the names of the unis we have
+}
+@foreach(var item in Model.UniesList)
+{
+
+    // all  the comments here is for testing to make sure that every thing working probably
+
+    @* <h2>@Uni_Names[2].GetType().GetGenericArguments()[0].Name</h2>
+    <h2>@Uni_Names.Count()</h2>
+    <h2>@Uni_Names[1]</h2> *@
+   
+
+    //display the name of the uni
+    <h2>@Html.DisplayFor(modelItem => item.Name)</h2>
+
+    //defined a variable
+    //to prevent the loop from displaying the table multiple times
+    var counter = 0;
+    
+
+
+    // this foreach loop through the uni_names list and store each time 
+    // the uni in the variable unis
+    @foreach (var unis in Uni_Names)
+    {
+        // get the first itme in uni_names and sotre it in a variable 
+        // and we are not using unis here because we want the university to change
+        // dynamically with each loop 
+        var firstItem = Uni_Names.FirstOrDefault();
+
+
+       @*  var sectItem = Uni_Names.Skip(1).FirstOrDefault();
+        var thirdtItem = Uni_Names.FirstOrDefault();
+        <h2>@sectItem.GetType().Name</h2> *@
+        @* 
+        <h2>@i</h2> *@
+        @* <h2>@thirdtItem</h2> *@
+        
+
+        // this is where we use the counter variable
+        if (counter < 1)
+        
+        {
+            // increase it so it will not loop again by accident
+            counter++;
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @* <h2>@unis.GetType().Name</h2>  *@
+                            @Html.DisplayNameFor(model => firstItem.FirstOrDefault().Id)
+                        </th>
+                        <th>
+                            
+                            @Html.DisplayNameFor(model => firstItem.FirstOrDefault().التخصص)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => firstItem.FirstOrDefault().الكلية)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => firstItem.FirstOrDefault().معدل_القبول)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => firstItem.FirstOrDefault().الساعات)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => firstItem.FirstOrDefault().السعر)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+
+
+
+                    @{
+                        // we are checking the uni_names at a specific index if it equal "AAU"
+                        // to display the related table 
+
+                        // and we are using uni_names and not uni because we need the name of the 
+                        //talble and unis is just the list of the table that contains the data 
+                        if (Uni_Names[i].GetType().GetGenericArguments()[0].Name == "AAU")
+                        {
+                            // <h2>@Uni_Names[i].GetType().GetGenericArguments()[0].Name</h2>
+                           
+
+                            if (unis != null && Model.AAU != null)
+                            {
+                                foreach (var major in Model.AAU)
+                                {
+                                    <tr>
+                                        <td>
+
+                                            @Html.DisplayFor(modelItem => major.Id)
+                                        </td>
+                                        <td>
+
+                                            @Html.DisplayFor(modelItem => major.التخصص)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => major.الكلية)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => major.معدل_القبول)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => major.الساعات)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => major.السعر)
+                                        </td>
+
+                                    </tr>
+
+                                }
+
+
+                            }
+                            // increase the i to make sure the program reach the other tables
+                            i++;
+                        }
+                        //same as above but this time the index change so as the talbe will change
+                        else if (Uni_Names[i].GetType().GetGenericArguments()[0].Name == "PHU")
+                        {
+                            // <h2>@Uni_Names[i].GetType().GetGenericArguments()[0].Name</h2>
+                            
+
+                            if (unis != null && Model.PHU != null)
+                            {
+                                foreach (var major in Model.PHU)
+                                {
+                                    <tr>
+                                        <td>
+
+                                            @Html.DisplayFor(modelItem => major.Id)
+                                        </td>
+                                        <td>
+
+                                            @Html.DisplayFor(modelItem => major.التخصص)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => major.الكلية)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => major.معدل_القبول)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => major.الساعات)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => major.السعر)
+                                        </td>
+
+                                    </tr>
+
+                                }
+
+                                i++;
+                            }
+                        }
+                        //same as above but this time the index change so as the talbe will change
+                        else if (Uni_Names[i].GetType().GetGenericArguments()[0].Name == "MEU")
+                        {
+                            // <h2>@Uni_Names[i].GetType().GetGenericArguments()[0].Name</h2>
+                            
+
+                            if (unis != null && Model.MEU != null)
+                            {
+                                foreach (var major in Model.MEU)
+                                {
+                                    <tr>
+                                        <td>
+
+                                            @Html.DisplayFor(modelItem => major.Id)
+                                        </td>
+                                        <td>
+
+                                            @Html.DisplayFor(modelItem => major.التخصص)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => major.الكلية)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => major.معدل_القبول)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => major.الساعات)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => major.السعر)
+                                        </td>
+
+                                    </tr>
+
+                                }
+
+                                i++;
+                            }
+                        }
+
+                    }
+
+
+
+
+
+
+
+                </tbody>
+            </table>
+
+        }
+        else
+        {
+            break;
+        }
+        
+
+    }
+   
+
+}
+
+
 

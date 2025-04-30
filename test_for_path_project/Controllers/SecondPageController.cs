@@ -18,10 +18,16 @@ namespace test_for_path_project.Controllers
         {
             if(p != null && p == "IT" ){
                 ViewBag.Title = p;
-                var uniIT  = _context.Unis.ToList();
-                if(uniIT != null)
+                var newModle = new CombinedViewModel
                 {
-                    return View(uniIT);
+                    AAU = _context.AAU_INFO.ToList(),
+                    PHU = _context.PHU_INFO.ToList(),
+                    MEU = _context.MEU_INFO.ToList(),
+                    UniesList = _context.Unis.ToList()
+                };
+                if(newModle != null)
+                {
+                    return View(newModle);
                 }
                 return NotFound();
             }
