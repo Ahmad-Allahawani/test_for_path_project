@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using System.Linq;
 using test_for_path_project.Models;
 
 namespace test_for_path_project.Controllers
@@ -14,15 +16,15 @@ namespace test_for_path_project.Controllers
         {
             _context = context;
         }
-        public IActionResult Index(string p)
+        public async Task<IActionResult> Index(string p)
         {
             if(p != null && p == "IT" ){
                 ViewBag.Title = p;
                 var newModle = new CombinedViewModel
                 {
-                    AAU = _context.AAU_INFO.ToList(),
-                    PHU = _context.PHU_INFO.ToList(),
-                    MEU = _context.MEU_INFO.ToList(),
+                    AAUlIST = await _context.AAU_INFO.Where(x => x.الحقل == "تكنلوجيا المعلومات").ToListAsync(),
+                    PHUlIST = await _context.PHU_INFO.Where(x => x.الحقل == "تكنلوجيا المعلومات").ToListAsync(),
+                    MEUlIST = await _context.MEU_INFO.Where(x => x.الحقل == "تكنلوجيا المعلومات").ToListAsync(),
                     UniesList = _context.Unis.ToList()
                 };
                 if(newModle != null)
@@ -34,24 +36,91 @@ namespace test_for_path_project.Controllers
             else if (p != null && p == "engineering")
             {
                 ViewBag.Title = p;
-                var uniEng = _context.Unis.ToList();
-                if (uniEng != null)
+                var newModle = new CombinedViewModel
                 {
-                    return View(uniEng);
+
+                    AAUlIST = await _context.AAU_INFO.Where(x => x.الحقل == "هندسي").ToListAsync(),
+                    PHUlIST = await _context.PHU_INFO.Where(x => x.الحقل == "هندسي").ToListAsync(),
+                    MEUlIST = await _context.MEU_INFO.Where(x => x.الحقل == "هندسي").ToListAsync(),
+                    UniesList = _context.Unis.ToList()
+                };
+                if (newModle != null)
+                {
+                    return View(newModle);
                 }
                 return NotFound();
-                
             }
             else if ( p != null && p == "medic")
             {
                 ViewBag.Title = p;
-                var uniMed = _context.Unis.ToList();
-                if (uniMed != null)
+                var newModle = new CombinedViewModel
                 {
-                    return View(uniMed);
+                    AAUlIST = await _context.AAU_INFO.Where(x => x.الحقل == "صحي").ToListAsync(),
+                    PHUlIST = await _context.PHU_INFO.Where(x => x.الحقل == "صحي").ToListAsync(),
+                    MEUlIST = await _context.MEU_INFO.Where(x => x.الحقل == "صحي").ToListAsync(),
+                    UniesList = _context.Unis.ToList()
+                    
+                };
+                if (newModle != null)
+                {
+                    return View(newModle);
                 }
                 return NotFound();
-               
+
+            }
+            else if (p != null && p == "business")
+            {
+                ViewBag.Title = p;
+                var newModle = new CombinedViewModel
+                {
+                    AAUlIST = await _context.AAU_INFO.Where(x => x.الحقل == "الأعمال").ToListAsync(),
+                    PHUlIST = await _context.PHU_INFO.Where(x => x.الحقل == "الأعمال").ToListAsync(),
+                    MEUlIST = await _context.MEU_INFO.Where(x => x.الحقل == "الأعمال").ToListAsync(),
+                    UniesList = _context.Unis.ToList()
+
+                };
+                if (newModle != null)
+                {
+                    return View(newModle);
+                }
+                return NotFound();
+
+            }
+            else if (p != null && p == "language")
+            {
+                ViewBag.Title = p;
+                var newModle = new CombinedViewModel
+                {
+                    AAUlIST = await _context.AAU_INFO.Where(x => x.الحقل == "اللغات والعلوم الاجتماعية").ToListAsync(),
+                    PHUlIST = await _context.PHU_INFO.Where(x => x.الحقل == "اللغات والعلوم الاجتماعية").ToListAsync(),
+                    MEUlIST = await _context.MEU_INFO.Where(x => x.الحقل == "اللغات والعلوم الاجتماعية").ToListAsync(),
+                    UniesList = _context.Unis.ToList()
+
+                };
+                if (newModle != null)
+                {
+                    return View(newModle);
+                }
+                return NotFound();
+
+            }
+            else if (p != null && p == "law")
+            {
+                ViewBag.Title = p;
+                var newModle = new CombinedViewModel
+                {
+                    AAUlIST = await _context.AAU_INFO.Where(x => x.الحقل == "القانون والعلوم الشرعية").ToListAsync(),
+                    PHUlIST = await _context.PHU_INFO.Where(x => x.الحقل == "القانون والعلوم الشرعية").ToListAsync(),
+                    MEUlIST = await _context.MEU_INFO.Where(x => x.الحقل == "القانون والعلوم الشرعية").ToListAsync(),
+                    UniesList = _context.Unis.ToList()
+
+                };
+                if (newModle != null)
+                {
+                    return View(newModle);
+                }
+                return NotFound();
+
             }
             return View();
         }

@@ -13,9 +13,9 @@
     // this will fours us to add all the items of the models to the list and this is a problem we 
     // do not need 
     var Uni_Names = new List<IEnumerable<ModelsInterace>>();
-    Uni_Names.Add(Model.AAU);
-    Uni_Names.Add(Model.PHU);
-    Uni_Names.Add(Model.MEU);
+    Uni_Names.Add(Model.AAUlIST);
+    Uni_Names.Add(Model.PHUlIST);
+    Uni_Names.Add(Model.MEUlIST);
 
     //defined a variable to use later to choose what table to display  
     int i = 0;
@@ -81,6 +81,9 @@
                             @Html.DisplayNameFor(model => firstItem.FirstOrDefault().الكلية)
                         </th>
                         <th>
+                            @Html.DisplayNameFor(model => firstItem.FirstOrDefault().الحقل)
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => firstItem.FirstOrDefault().معدل_القبول)
                         </th>
                         <th>
@@ -106,11 +109,11 @@
                         if (Uni_Names[i].GetType().GetGenericArguments()[0].Name == "AAU")
                         {
                             // <h2>@Uni_Names[i].GetType().GetGenericArguments()[0].Name</h2>
-                           
 
-                            if (unis != null && Model.AAU != null)
+
+                            if (unis != null && Model.AAUlIST != null)
                             {
-                                foreach (var major in Model.AAU)
+                                foreach (var major in Model.AAUlIST)
                                 {
                                     <tr>
                                         <td>
@@ -123,6 +126,9 @@
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => major.الكلية)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => major.الحقل)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => major.معدل_القبول)
@@ -147,11 +153,11 @@
                         else if (Uni_Names[i].GetType().GetGenericArguments()[0].Name == "PHU")
                         {
                             // <h2>@Uni_Names[i].GetType().GetGenericArguments()[0].Name</h2>
-                            
 
-                            if (unis != null && Model.PHU != null)
+
+                            if (unis != null && Model.PHUlIST != null)
                             {
-                                foreach (var major in Model.PHU)
+                                foreach (var major in Model.PHUlIST)
                                 {
                                     <tr>
                                         <td>
@@ -164,6 +170,9 @@
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => major.الكلية)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => major.الحقل)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => major.معدل_القبول)
@@ -186,11 +195,11 @@
                         else if (Uni_Names[i].GetType().GetGenericArguments()[0].Name == "MEU")
                         {
                             // <h2>@Uni_Names[i].GetType().GetGenericArguments()[0].Name</h2>
-                            
 
-                            if (unis != null && Model.MEU != null)
+
+                            if (unis != null && Model.MEUlIST != null)
                             {
-                                foreach (var major in Model.MEU)
+                                foreach (var major in Model.MEUlIST)
                                 {
                                     <tr>
                                         <td>
@@ -203,6 +212,9 @@
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => major.الكلية)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => major.الحقل)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => major.معدل_القبول)

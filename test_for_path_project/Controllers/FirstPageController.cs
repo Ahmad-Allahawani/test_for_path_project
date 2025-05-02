@@ -8,7 +8,7 @@ namespace test_for_path_project.Controllers
     {
         private readonly ApplicationDbContext _context;
 
-        private List<string> paths = new List<string> { "IT", "engineering", "medic" };
+        private List<string> paths = new List<string> { "IT", "engineering", "medic" , "business", "language","law" };
 
         public FirstPageController(ApplicationDbContext context)
         {

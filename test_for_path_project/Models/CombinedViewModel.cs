@@ -2,9 +2,9 @@
 {
     public class CombinedViewModel
     {
-        public IEnumerable<AAU> ? AAU { get; set; }
-        public IEnumerable<PHU>? PHU{ get; set; }
-        public IEnumerable<MEU>? MEU { get; set; }
+        public IEnumerable<AAU> ? AAUlIST { get; set; }
+        public IEnumerable<PHU>? PHUlIST { get; set; }
+        public IEnumerable<MEU>? MEUlIST { get; set; }
 
         public IEnumerable<University>? UniesList { get; set; }
     }
