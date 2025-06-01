@@ -21,13 +21,13 @@ namespace test_for_path_project.Controllers
         }
 
         [HttpPost, ActionName("path")]
-        public  IActionResult secPage(string path)
+        public  IActionResult secPage(string path , int gpa)
         {
             foreach (string field in paths)
             {
-                if (path == field && path != null)
+                if (path == field && path != null /*&& gpa != 0*/)
                 {
-                    return RedirectToAction("Index", "SecondPage",new {p = path});
+                    return RedirectToAction("Index", "SecondPage",new {p = path , g = gpa});
                 }
             }
                 return NotFound();

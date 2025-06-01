@@ -23,6 +23,7 @@
 @{
     // this foreach loops through the uieslist that contains the names of the unis we have
 }
+<h2>@ViewBag.Title</h2>
 @foreach(var item in Model.UniesList)
 {
 
@@ -131,7 +132,7 @@
                                             @Html.DisplayFor(modelItem => major.الحقل)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => major.معدل_القبول)
+                                            @Html.DisplayFor(modelItem => major.معدل_القبول) %
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => major.الساعات)
@@ -175,7 +176,7 @@
                                             @Html.DisplayFor(modelItem => major.الحقل)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => major.معدل_القبول)
+                                            @Html.DisplayFor(modelItem => major.معدل_القبول) %
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => major.الساعات)
@@ -217,7 +218,7 @@
                                             @Html.DisplayFor(modelItem => major.الحقل)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => major.معدل_القبول)
+                                            @Html.DisplayFor(modelItem => major.معدل_القبول) %
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => major.الساعات)

@@ -8,7 +8,7 @@
         public string? الكلية { get; set; }
 
         public string? الحقل { get; set; }
-        public string? معدل_القبول { get; set; }
+        public double? معدل_القبول { get; set; }
         public int? الساعات { get; set; }
         public int? السعر { get; set; }
 
