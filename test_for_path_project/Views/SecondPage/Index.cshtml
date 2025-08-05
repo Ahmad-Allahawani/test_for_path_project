@@ -23,11 +23,11 @@
 @{
     // this foreach loops through the uieslist that contains the names of the unis we have
 }
-<h2>@ViewBag.Title</h2>
+@* <h2>@ViewBag.Title</h2> *@
 @foreach(var item in Model.UniesList)
 {
 
-    // all  the comments here is for testing to make sure that every thing working probably
+    // all  the comments here is for testing to make sure that everything working fine
 
     @* <h2>@Uni_Names[2].GetType().GetGenericArguments()[0].Name</h2>
     <h2>@Uni_Names.Count()</h2>
@@ -67,36 +67,23 @@
         {
             // increase it so it will not loop again by accident
             counter++;
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>
-                            @* <h2>@unis.GetType().Name</h2>  *@
-                            @Html.DisplayNameFor(model => firstItem.FirstOrDefault().Id)
-                        </th>
-                        <th>
-                            
-                            @Html.DisplayNameFor(model => firstItem.FirstOrDefault().التخصص)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => firstItem.FirstOrDefault().الكلية)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => firstItem.FirstOrDefault().الحقل)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => firstItem.FirstOrDefault().معدل_القبول)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => firstItem.FirstOrDefault().الساعات)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => firstItem.FirstOrDefault().السعر)
-                        </th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
+            <div class="card shadow-lg rounded-3 mb-4">
+            <div class="table-responsive card-body" >
+                    <table class="table table-hover align-middle text-center shadow rounded-3 ">
+                    <thead class="table-light">
+                        <tr >
+                            <th>@Html.DisplayNameFor(model => firstItem.FirstOrDefault().Id)</th>
+                            <th>@Html.DisplayNameFor(model => firstItem.FirstOrDefault().التخصص)</th>
+                            <th>@Html.DisplayNameFor(model => firstItem.FirstOrDefault().الكلية)</th>
+                            <th>@Html.DisplayNameFor(model => firstItem.FirstOrDefault().الحقل)</th>
+                            <th>@Html.DisplayNameFor(model => firstItem.FirstOrDefault().معدل_القبول)</th>
+                            <th>@Html.DisplayNameFor(model => firstItem.FirstOrDefault().الساعات)</th>
+                            <th>@Html.DisplayNameFor(model => firstItem.FirstOrDefault().السعر)</th>
+                        </tr>
+                    </thead>
+                   
+            
+                    <tbody class="table-group-divider">
 
 
 
@@ -116,32 +103,16 @@
                             {
                                 foreach (var major in Model.AAUlIST)
                                 {
-                                    <tr>
-                                        <td>
-
-                                            @Html.DisplayFor(modelItem => major.Id)
-                                        </td>
-                                        <td>
-
-                                            @Html.DisplayFor(modelItem => major.التخصص)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => major.الكلية)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => major.الحقل)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => major.معدل_القبول) %
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => major.الساعات)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => major.السعر)
-                                        </td>
-
-                                    </tr>
+                                        <tr class="bg-white">
+                                            <td>@Html.DisplayFor(modelItem => major.Id)</td>
+                                            <td>@Html.DisplayFor(modelItem => major.التخصص)</td>
+                                            <td>@Html.DisplayFor(modelItem => major.الكلية)</td>
+                                            <td>@Html.DisplayFor(modelItem => major.الحقل)</td>
+                                            <td>@Html.DisplayFor(modelItem => major.معدل_القبول) %</td>
+                                            <td>@Html.DisplayFor(modelItem => major.الساعات)</td>
+                                            <td>@Html.DisplayFor(modelItem => major.السعر)</td>
+                                           
+                                        </tr>
 
                                 }
 
@@ -160,7 +131,7 @@
                             {
                                 foreach (var major in Model.PHUlIST)
                                 {
-                                    <tr>
+                                    <tr class="bg-white">
                                         <td>
 
                                             @Html.DisplayFor(modelItem => major.Id)
@@ -202,7 +173,7 @@
                             {
                                 foreach (var major in Model.MEUlIST)
                                 {
-                                    <tr>
+                                    <tr class="bg-white">
                                         <td>
 
                                             @Html.DisplayFor(modelItem => major.Id)
@@ -243,8 +214,10 @@
 
 
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
+          </div>
 
         }
         else

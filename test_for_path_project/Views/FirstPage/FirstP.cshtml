@@ -3,46 +3,63 @@
     ViewData["Title"] = "first page";
 }
 
-<h1>First page </h1>
+<style>
+  .student-img {
+    max-height: 350px;
+  }
 
+  @@media (max-width: 768px) {
+    .student-img {
+      max-height: 200px;
+    }
+  }
+</style>
 
+<div class="row align-items-center" style="min-height: 80vh;">
+    
+    <!-- Left column: form -->
 
-<h4>path</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6 px-5 mt-0 order-1 order-md-0">
+        <h1 class="display-5  fw-bold mb-2 "><span>Choose your path</span><br /><small>First page</small></h1>
+        @* <h1 class="display-4  fw-bold mb-2 ">Choose your path </h1>
+        <h1 class="display-6 fw-bold mt-0 ">First page</h1> *@
+      
         <form asp-action="path">
-           
-            <div class="form-group">
-                <label  class="control-label">Choose your path</label>
-
-                <select name="path" class="form-control" id="list" >
-
-                    <option id="blank" value="blank" selected disabled>paths</option>
+            <div class="mb-3">
+                <label class="form-label fw-bold">Choose</label>
+                <select name="path" class="form-control rounded border border-primary text-primary" id="list">
+                    <option value="blank" selected disabled>paths</option>
                     <option value="IT">IT</option>
                     <option value="engineering">engineering</option>
                     <option value="medic">medic</option>
                     <option value="business">business</option>
                     <option value="language">language</option>
                     <option value="law">Law</option>
-                </select> 
-                <span  class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">GPA</label>
-                <input  class="form-control" name="gpa" />
+                </select>
                 <span class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="submit" class="btn btn-primary" />
+            <div class="mb-3">
+                <label class="form-label fw-bold">GPA</label>
+                <input class="form-control rounded border border-primary " name="gpa" placeholder="optional" />
+                <span class="text-danger"></span>
             </div>
+            <div class="mb-3">
+                <input type="submit" value="Submit" class="btn btn-primary px-4 py-2" style="background: #256eb8" />
+            </div>
+           
         </form>
+    </div>
+
+    <!-- Right column: image -->
+    <div class="col-md-6 order-2 order-md-1 text-center">
+
+		
+        <img src="~/images/second_img_design.jpeg" alt="Student Illustration" class="img-fluid  student-img" style="max-height: 450px; " />
     </div>
 </div>
 
-<div>
-    <a asp-controller="Home" asp-action="Index">Back to List</a>
-</div>
+
+
 
 
 
